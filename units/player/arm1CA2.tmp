@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://ntx581koqmfy"]
+
+[ext_resource type="Script" path="res://units/player/arm.gd" id="1_jd1jx"]
+
+[node name="Arm" type="Line2D"]
+width = 1.0
+script = ExtResource("1_jd1jx")

@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://b6rjbjsg1lq38"]
+
+[ext_resource type="Script" path="res://units/player/player.gd" id="1_5agx7"]
+[ext_resource type="Texture2D" uid="uid://rqpse44csnev" path="res://units/player/mouth1.png" id="3_icl2b"]
+[ext_resource type="Texture2D" uid="uid://18vg8v1cuv6v" path="res://units/player/body.png" id="3_ywsl1"]
+[ext_resource type="Texture2D" uid="uid://psscge0nwd43" path="res://units/player/mouth2.png" id="4_j6sil"]
+[ext_resource type="Texture2D" uid="uid://dy17ggx1nptxf" path="res://units/player/mouth3.png" id="5_4g6bw"]
+[ext_resource type="Texture2D" uid="uid://npfxwhuofvsu" path="res://units/player/mouth4.png" id="6_sgm61"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ylkqm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_sgm61")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4g6bw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j6sil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_icl2b")
+}],
+"loop": false,
+"name": &"mouth_close",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_icl2b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_j6sil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4g6bw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_sgm61")
+}],
+"loop": false,
+"name": &"mouth_open",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ypju7"]
+radius = 11.0
+height = 34.0
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_5agx7")
+
+[node name="Body" type="Sprite2D" parent="."]
+position = Vector2(-2, -3)
+texture = ExtResource("3_ywsl1")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -25)
+sprite_frames = SubResource("SpriteFrames_ylkqm")
+animation = &"mouth_open"
+frame = 3
+frame_progress = 1.0
+
+[node name="MouthBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MouthBox"]
+position = Vector2(0, -25)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ypju7")
+
+[connection signal="area_entered" from="MouthBox" to="." method="_on_mouth_box_area_entered"]
