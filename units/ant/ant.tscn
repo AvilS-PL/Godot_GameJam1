@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://ej6a38cy5hlp"]
+[gd_scene load_steps=7 format=3 uid="uid://ej6a38cy5hlp"]
 
+[ext_resource type="Script" path="res://units/ant/ant.gd" id="1_4fyrc"]
 [ext_resource type="Texture2D" uid="uid://dwp26rcrscrqr" path="res://units/ant/ant1.png" id="1_wfwgt"]
 [ext_resource type="Texture2D" uid="uid://c56ykhsip8ei2" path="res://units/ant/ant2.png" id="2_ak5jv"]
 [ext_resource type="Texture2D" uid="uid://bhh4iqq0fkf66" path="res://units/ant/ant3.png" id="3_8qfil"]
@@ -26,6 +27,7 @@ animations = [{
 }]
 
 [node name="Ant" type="RigidBody2D"]
+script = ExtResource("1_4fyrc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

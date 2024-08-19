@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnvlgri1gdgl2"]
+
+[ext_resource type="Texture2D" uid="uid://dyrei2ktrai84" path="res://GUI/bt1.png" id="1_704ce"]
+[ext_resource type="Texture2D" uid="uid://drlmym23wuvng" path="res://GUI/bt2.png" id="2_ih8iy"]
+[ext_resource type="Texture2D" uid="uid://hojlbv786kwb" path="res://GUI/bt3.png" id="3_8hll0"]
+[ext_resource type="Script" path="res://GUI/button.gd" id="4_hmtiu"]
+[ext_resource type="FontFile" uid="uid://dik0xyvp6v7wf" path="res://GUI/Daydream.ttf" id="4_qhnds"]
+
+[node name="Button" type="TextureButton"]
+offset_right = 50.0
+offset_bottom = 18.0
+texture_normal = ExtResource("1_704ce")
+texture_pressed = ExtResource("2_ih8iy")
+texture_hover = ExtResource("3_8hll0")
+script = ExtResource("4_hmtiu")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 101.0
+offset_bottom = 36.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_qhnds")
+theme_override_font_sizes/font_size = 10
+text = "aaaaa"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_down" from="." to="." method="_on_button_down"]
+[connection signal="button_up" from="." to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
