@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dy17ggx1nptxf"
-path="res://.godot/imported/mouth3.png-145f3e6fd8c3f8898d9223b8be0f8a80.ctex"
+uid="uid://jot6iuyeb0fj"
+path="res://.godot/imported/tiles1.png-a0ed1f0461c34c1d4d91486aad2e28eb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://units/player/mouth3.png"
-dest_files=["res://.godot/imported/mouth3.png-145f3e6fd8c3f8898d9223b8be0f8a80.ctex"]
+source_file="res://maps/tiles1.png"
+dest_files=["res://.godot/imported/tiles1.png-a0ed1f0461c34c1d4d91486aad2e28eb.ctex"]
 
 [params]
 

@@ -1,16 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://brnu6xu2sand3"]
+[gd_scene load_steps=2 format=3 uid="uid://brnu6xu2sand3"]
 
 [ext_resource type="Script" path="res://world.gd" id="1_0ymhu"]
-[ext_resource type="PackedScene" uid="uid://b6rjbjsg1lq38" path="res://units/player/player.tscn" id="2_7ny44"]
-[ext_resource type="PackedScene" uid="uid://ntx581koqmfy" path="res://units/player/arm.tscn" id="3_f3ua4"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_0ymhu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(160, 90)
-
-[node name="Player" parent="." instance=ExtResource("2_7ny44")]
-position = Vector2(161, 157)
-
-[node name="Arm" parent="." instance=ExtResource("3_f3ua4")]

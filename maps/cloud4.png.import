@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://npfxwhuofvsu"
-path="res://.godot/imported/mouth4.png-b2dc138b5642e9d66b6e7e5065b2cdbb.ctex"
+uid="uid://f4cjukgtuu06"
+path="res://.godot/imported/cloud4.png-e6be86e654805811ef00b0d27b4adc05.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://units/player/mouth4.png"
-dest_files=["res://.godot/imported/mouth4.png-b2dc138b5642e9d66b6e7e5065b2cdbb.ctex"]
+source_file="res://maps/cloud4.png"
+dest_files=["res://.godot/imported/cloud4.png-e6be86e654805811ef00b0d27b4adc05.ctex"]
 
 [params]
 
