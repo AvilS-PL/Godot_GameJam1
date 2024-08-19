@@ -8,4 +8,4 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	pass
+	$RigidBody2D4.apply_impulse(Vector2(1,0), Vector2(0,0))
