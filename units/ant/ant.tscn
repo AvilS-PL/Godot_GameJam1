@@ -1,11 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://ej6a38cy5hlp"]
+[gd_scene load_steps=12 format=3 uid="uid://ej6a38cy5hlp"]
 
 [ext_resource type="Script" path="res://units/ant/ant.gd" id="1_4fyrc"]
 [ext_resource type="Texture2D" uid="uid://dwp26rcrscrqr" path="res://units/ant/ant1.png" id="1_wfwgt"]
 [ext_resource type="Texture2D" uid="uid://c56ykhsip8ei2" path="res://units/ant/ant2.png" id="2_ak5jv"]
 [ext_resource type="Texture2D" uid="uid://bhh4iqq0fkf66" path="res://units/ant/ant3.png" id="3_8qfil"]
+[ext_resource type="AudioStream" uid="uid://bb4nfygv7kh2g" path="res://sound/h1.mp3" id="5_gsmyb"]
+[ext_resource type="AudioStream" uid="uid://d0b6hpvngqwej" path="res://sound/h2.mp3" id="6_636gx"]
+[ext_resource type="AudioStream" uid="uid://cs18r0b85b6fb" path="res://sound/h3.mp3" id="7_djjrx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hl0a2"]
+friction = 0.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p6uoc"]
 radius = 1.0
@@ -18,6 +22,20 @@ animations = [{
 "texture": ExtResource("1_wfwgt")
 }, {
 "duration": 1.0,
+"texture": ExtResource("3_8qfil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ak5jv")
+}],
+"loop": true,
+"name": &"reverse_walk",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_wfwgt")
+}, {
+"duration": 1.0,
 "texture": ExtResource("2_ak5jv")
 }, {
 "duration": 1.0,
@@ -25,11 +43,16 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 4.0
+"speed": 3.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wljdu"]
+radius = 2.0
+height = 6.0
+
 [node name="Ant" type="RigidBody2D"]
-mass = 0.1
+z_index = 1
+mass = 10.0
 physics_material_override = SubResource("PhysicsMaterial_hl0a2")
 lock_rotation = true
 script = ExtResource("1_4fyrc")
@@ -40,5 +63,35 @@ shape = SubResource("CapsuleShape2D_p6uoc")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1n4y0")
-animation = &"walk"
-frame_progress = 0.0207361
+animation = &"reverse_walk"
+frame_progress = 0.0285543
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_wljdu")
+debug_color = Color(1, 0.0313726, 0, 0.419608)
+
+[node name="Hit" type="Timer" parent="."]
+autostart = true
+
+[node name="SEat1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_gsmyb")
+volume_db = 4.0
+pitch_scale = 0.84
+
+[node name="SEat2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_636gx")
+volume_db = 4.0
+pitch_scale = 1.13
+
+[node name="SEat3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_djjrx")
+volume_db = 4.0
+pitch_scale = 0.84
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Hit" to="." method="_on_hit_timeout"]

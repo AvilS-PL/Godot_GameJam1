@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://b6rjbjsg1lq38"]
+[gd_scene load_steps=34 format=3 uid="uid://b6rjbjsg1lq38"]
 
 [ext_resource type="Script" path="res://units/player/player.gd" id="1_5agx7"]
+[ext_resource type="Shader" path="res://shaders/wind.gdshader" id="1_hlxj3"]
 [ext_resource type="Texture2D" uid="uid://ch8qm0n0ablv6" path="res://units/player/big/body0.png" id="2_txxgs"]
 [ext_resource type="Texture2D" uid="uid://brxe4vo1kfc77" path="res://units/player/big/body1.png" id="3_6s4as"]
 [ext_resource type="Texture2D" uid="uid://d1tgeyu74jpsn" path="res://units/player/big/body2.png" id="4_mitvo"]
@@ -13,6 +14,23 @@
 [ext_resource type="Texture2D" uid="uid://bd3e4fqxl5ydo" path="res://units/player/small/body0.png" id="11_nnu25"]
 [ext_resource type="Texture2D" uid="uid://cca3r15gwa18g" path="res://units/player/tiny/body1.png" id="12_g5w7h"]
 [ext_resource type="Texture2D" uid="uid://bkb2bnnoqxhmo" path="res://units/player/tiny/body0.png" id="13_857tu"]
+[ext_resource type="AudioStream" uid="uid://4vo0j0utgqim" path="res://sound/s1.mp3" id="15_ssx36"]
+[ext_resource type="AudioStream" uid="uid://bm0eriojgbglv" path="res://sound/s2.mp3" id="16_m8ewx"]
+[ext_resource type="AudioStream" uid="uid://dsbb1myqx471v" path="res://sound/s3.mp3" id="17_vpwou"]
+[ext_resource type="AudioStream" uid="uid://bendrkl2x04qu" path="res://sound/s4.mp3" id="18_kcf3a"]
+[ext_resource type="AudioStream" uid="uid://d2jafr3j4k0pb" path="res://sound/d1.mp3" id="19_f2bj7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dx1hs"]
+shader = ExtResource("1_hlxj3")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.002
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bg6ej"]
 animations = [{
@@ -29,6 +47,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("12_g5w7h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_857tu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_g5w7h")
+}],
+"loop": false,
+"name": &"eat",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("13_857tu")
 }, {
 "duration": 1.0,
@@ -38,6 +70,26 @@ animations = [{
 "name": &"open",
 "speed": 6.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ou3mc"]
+radius = 4.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hofi7"]
+radius = 5.0
+height = 10.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cm3qw"]
+shader = ExtResource("1_hlxj3")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.002
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_uugvw"]
 animations = [{
@@ -57,6 +109,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("9_h1jlv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l5ocx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_nnu25")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_l5ocx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_h1jlv")
+}],
+"loop": false,
+"name": &"eat",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("11_nnu25")
 }, {
 "duration": 1.0,
@@ -69,6 +141,26 @@ animations = [{
 "name": &"open",
 "speed": 9.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_aenfx"]
+radius = 6.0
+height = 20.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7bu30"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fdy1h"]
+shader = ExtResource("1_hlxj3")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.005
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_g3loa"]
 animations = [{
@@ -88,6 +180,26 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("6_r3kcj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_s5c1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_qhrav")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_s5c1c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_r3kcj")
+}],
+"loop": false,
+"name": &"eat",
+"speed": 9.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("8_qhrav")
 }, {
 "duration": 1.0,
@@ -100,6 +212,22 @@ animations = [{
 "name": &"open",
 "speed": 9.0
 }]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6f05"]
+radius = 12.0
+height = 24.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_oc3i3"]
+shader = ExtResource("1_hlxj3")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.005
+shader_parameter/strengthScale = 100.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_lmq7e"]
 animations = [{
@@ -132,42 +260,175 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("2_txxgs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6s4as")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mitvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f5j7l")
+}],
+"loop": false,
+"name": &"eat",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_f5j7l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_mitvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6s4as")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_txxgs")
 }],
 "loop": false,
 "name": &"open",
 "speed": 12.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kvwt4"]
-radius = 5.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5smwk"]
+radius = 18.0
+height = 36.0
 
 [node name="Player" type="Node2D"]
-z_index = 3
 script = ExtResource("1_5agx7")
 stages = [NodePath("Tiny"), NodePath("Small"), NodePath("Mid"), NodePath("Big")]
 
 [node name="Tiny" type="AnimatedSprite2D" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_dx1hs")
 sprite_frames = SubResource("SpriteFrames_bg6ej")
-animation = &"open"
+animation = &"eat"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Tiny"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiny/StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ou3mc")
+
+[node name="Eat" type="Area2D" parent="Tiny"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiny/Eat"]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_hofi7")
+debug_color = Color(0.996078, 0, 0.196078, 0.419608)
+
+[node name="Hit" type="Area2D" parent="Tiny"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Tiny/Hit"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ou3mc")
 
 [node name="Small" type="AnimatedSprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_cm3qw")
 sprite_frames = SubResource("SpriteFrames_uugvw")
-animation = &"close"
+animation = &"eat"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Small"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Small/StaticBody2D"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_aenfx")
+
+[node name="Eat" type="Area2D" parent="Small"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Small/Eat"]
+position = Vector2(0, -5)
+shape = SubResource("CapsuleShape2D_7bu30")
+debug_color = Color(1, 0, 0.0901961, 0.419608)
+
+[node name="Hit" type="Area2D" parent="Small"]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Small/Hit"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_aenfx")
 
 [node name="Mid" type="AnimatedSprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_fdy1h")
 position = Vector2(-1, 0)
 sprite_frames = SubResource("SpriteFrames_g3loa")
-animation = &"close"
+animation = &"eat"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Mid"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mid/StaticBody2D"]
+polygon = PackedVector2Array(-11, -12, -15, -6, -15, 3, -17, 5, -19, 5, -20, 7, -20, 12, -16, 14, -3, 14, -3, 15, 2, 15, 2, 14, 11, 14, 15, 13, 20, 9, 20, 5, 18, 3, 15, 2, 15, -7, 11, -12, 5, -15, -7, -15)
+
+[node name="Eat" type="Area2D" parent="Mid"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Mid/Eat"]
+position = Vector2(1, -14)
+shape = SubResource("CapsuleShape2D_g6f05")
+debug_color = Color(0.984314, 0.129412, 0, 0.419608)
+
+[node name="Hit" type="Area2D" parent="Mid"]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Mid/Hit"]
+polygon = PackedVector2Array(-10, -12, -14, -6, -14, 3, -17, 5, -19, 5, -20, 7, -20, 12, -16, 14, -3, 14, -3, 15, 2, 15, 2, 14, 11, 14, 15, 13, 20, 9, 20, 5, 18, 3, 14, 3, 14, -7, 10, -12, 5, -14, -7, -14)
 
 [node name="Big" type="AnimatedSprite2D" parent="."]
 visible = false
+material = SubResource("ShaderMaterial_oc3i3")
 position = Vector2(1, 0)
 sprite_frames = SubResource("SpriteFrames_lmq7e")
-animation = &"close"
+animation = &"eat"
+frame = 6
+frame_progress = 1.0
 
-[node name="Body" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="Big"]
+collision_layer = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Body"]
-shape = SubResource("CircleShape2D_kvwt4")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Big/StaticBody2D"]
+polygon = PackedVector2Array(-19, -15, -22, -11, -24, -6, -24, 2, -31, 3, -37, 6, -40, 10, -40, 17, -39, 20, -25, 20, -15, 20, -15, 18, -9, 18, -9, 20, 0, 20, 2, 21, 16, 21, 29, 19, 39, 12, 40, 8, 37, 5, 29, 2, 22, 2, 23, -5, 21, -10, 17, -15, 12, -18, 2, -21, -5, -21, -9, -20, -17, -17)
+
+[node name="Eat" type="Area2D" parent="Big"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Big/Eat"]
+position = Vector2(-1, -21)
+shape = SubResource("CapsuleShape2D_5smwk")
+debug_color = Color(1, 0.0117647, 0.0313726, 0.419608)
+
+[node name="Hit" type="Area2D" parent="Big"]
+collision_mask = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Big/Hit"]
+polygon = PackedVector2Array(-19, -15, -22, -11, -24, -6, -24, 2, -31, 3, -37, 6, -40, 10, -40, 17, -39, 20, -25, 20, -15, 20, -15, 18, -9, 18, -9, 20, 0, 20, 2, 21, 16, 21, 29, 19, 39, 12, 40, 8, 37, 5, 29, 2, 22, 2, 23, -5, 21, -10, 17, -15, 12, -18, 2, -21, -5, -21, -9, -20, -17, -17)
+
+[node name="SEat1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_ssx36")
+
+[node name="SEat2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_m8ewx")
+pitch_scale = 1.22
+
+[node name="SEat3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_vpwou")
+
+[node name="SEat4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("18_kcf3a")
+pitch_scale = 1.36
+
+[node name="SDead" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("19_f2bj7")
+volume_db = -1.873
+pitch_scale = 0.86
+
+[connection signal="area_entered" from="Tiny/Eat" to="." method="_on_eat_area_entered"]
+[connection signal="area_entered" from="Small/Eat" to="." method="_on_eat_area_entered"]
+[connection signal="area_entered" from="Mid/Eat" to="." method="_on_eat_area_entered"]
+[connection signal="area_entered" from="Big/Eat" to="." method="_on_eat_area_entered"]

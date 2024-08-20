@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://b2rst8b0of62"]
+
+[ext_resource type="Script" path="res://units/dog/dog.gd" id="1_nek4h"]
+[ext_resource type="Texture2D" uid="uid://gf1801wi76yj" path="res://units/dog/dog1.png" id="2_aykag"]
+[ext_resource type="Texture2D" uid="uid://dp4qkff6i8t8h" path="res://units/dog/dog2.png" id="3_6lug1"]
+[ext_resource type="AudioStream" uid="uid://bb4nfygv7kh2g" path="res://sound/h1.mp3" id="4_cepop"]
+[ext_resource type="Texture2D" uid="uid://6pqjtx5gf0t1" path="res://units/dog/dog3.png" id="4_tjynw"]
+[ext_resource type="AudioStream" uid="uid://d0b6hpvngqwej" path="res://sound/h2.mp3" id="5_wsoyi"]
+[ext_resource type="AudioStream" uid="uid://cs18r0b85b6fb" path="res://sound/h3.mp3" id="6_tjuwj"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7j0u7"]
+radius = 5.0
+height = 18.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xvl6y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_aykag")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_6lug1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_tjynw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o5fhl"]
+radius = 7.0
+height = 24.0
+
+[node name="Dog" type="RigidBody2D"]
+lock_rotation = true
+script = ExtResource("1_nek4h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7j0u7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_xvl6y")
+animation = &"walk"
+frame = 1
+frame_progress = 0.918557
+
+[node name="Area2D" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_o5fhl")
+debug_color = Color(0.992157, 0, 0.254902, 0.419608)
+
+[node name="Hit" type="Timer" parent="."]
+autostart = true
+
+[node name="SEat1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_cepop")
+volume_db = 4.0
+pitch_scale = 0.84
+
+[node name="SEat2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_wsoyi")
+volume_db = 4.0
+pitch_scale = 1.13
+
+[node name="SEat3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_tjuwj")
+volume_db = 4.0
+pitch_scale = 0.84
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Hit" to="." method="_on_hit_timeout"]

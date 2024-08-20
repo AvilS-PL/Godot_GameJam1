@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=3 uid="uid://b4omgwmvgqy2b"]
+
+[ext_resource type="Script" path="res://units/rat/rat.gd" id="1_oyj4h"]
+[ext_resource type="Texture2D" uid="uid://i35tcuwy74bx" path="res://units/rat/rat1.png" id="1_pmvm5"]
+[ext_resource type="Texture2D" uid="uid://dgk2n6xr6me2h" path="res://units/rat/rat2.png" id="2_ji8hp"]
+[ext_resource type="AudioStream" uid="uid://bb4nfygv7kh2g" path="res://sound/h1.mp3" id="4_c55xs"]
+[ext_resource type="AudioStream" uid="uid://d0b6hpvngqwej" path="res://sound/h2.mp3" id="5_atab4"]
+[ext_resource type="AudioStream" uid="uid://cs18r0b85b6fb" path="res://sound/h3.mp3" id="6_ctc04"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7j0u7"]
+radius = 2.0
+height = 8.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xvl6y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_pmvm5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ji8hp")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o5fhl"]
+radius = 3.0
+height = 10.0
+
+[node name="Rat" type="RigidBody2D"]
+z_index = 1
+lock_rotation = true
+script = ExtResource("1_oyj4h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_7j0u7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1, 0)
+sprite_frames = SubResource("SpriteFrames_xvl6y")
+animation = &"walk"
+frame_progress = 0.444383
+
+[node name="Area2D" type="Area2D" parent="."]
+rotation = 1.5708
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CapsuleShape2D_o5fhl")
+debug_color = Color(0.992157, 0, 0.254902, 0.419608)
+
+[node name="Hit" type="Timer" parent="."]
+autostart = true
+
+[node name="SEat1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_c55xs")
+volume_db = 4.0
+pitch_scale = 0.84
+
+[node name="SEat2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_atab4")
+volume_db = 4.0
+pitch_scale = 1.13
+
+[node name="SEat3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_ctc04")
+volume_db = 4.0
+pitch_scale = 0.84
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="timeout" from="Hit" to="." method="_on_hit_timeout"]

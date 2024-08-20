@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dn7xicleplqwv"]
+[gd_scene load_steps=5 format=3 uid="uid://dn7xicleplqwv"]
 
 [ext_resource type="Script" path="res://main_menu.gd" id="1_vtvj6"]
 [ext_resource type="PackedScene" uid="uid://bnvlgri1gdgl2" path="res://GUI/button.tscn" id="2_fm84s"]
+[ext_resource type="Texture2D" uid="uid://y3dhbs0gucfv" path="res://usables/scorebar.png" id="3_37flv"]
+[ext_resource type="FontFile" uid="uid://dik0xyvp6v7wf" path="res://GUI/Daydream.ttf" id="4_uiwei"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -35,7 +37,30 @@ visible = false
 layout_mode = 2
 
 [node name="Button3" parent="Menu" instance=ExtResource("2_fm84s")]
+visible = false
 layout_mode = 2
 
 [node name="Button4" parent="Menu" instance=ExtResource("2_fm84s")]
+visible = false
 layout_mode = 2
+
+[node name="Scorebar" type="Sprite2D" parent="."]
+z_index = 5
+position = Vector2(295, 171)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_37flv")
+
+[node name="Label" type="Label" parent="Scorebar"]
+offset_left = -42.0
+offset_top = -12.0
+offset_right = 130.0
+offset_bottom = 32.0
+scale = Vector2(0.5, 0.5)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("4_uiwei")
+theme_override_font_sizes/font_size = 10
+text = "highscore:
+0"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_lock_ = true

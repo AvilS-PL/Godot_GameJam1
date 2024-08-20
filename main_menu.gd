@@ -1,6 +1,7 @@
 extends Control
 
-
+var savePath = "user://highscore.save"
+var score = 11
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	$Menu/Button/Label.text = "NEW GAME"
@@ -16,6 +17,11 @@ func _ready():
 	var mapLoad = load("res://maps/tile_map_0.tscn")
 	var map = mapLoad.instantiate()
 	add_child(map)
+	if FileAccess.file_exists(savePath):
+		var file = FileAccess.open(savePath, FileAccess.READ)
+		$Scorebar/Label.text = "Highscore:\n" + str(file.get_var(score))
+	else:
+		$Scorebar/Label.text = "Highscore:\n0"
 
 func clicked(what):
 	if what == "EXIT":
