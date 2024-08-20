@@ -81,10 +81,11 @@ func next_tier():
 	elif tier < 9:
 		$DogSpawn.wait_time -= 1.0
 	elif tier > 15:
-		if $MouseSpawn.wait_time > 0.1:
-			$MouseSpawn.wait_time -= 0.1
-		if $DogSpawn.wait_time > 0.1:
-			$DogSpawn.wait_time -= 0.1
+		print($MouseSpawn.wait_time)
+		if $MouseSpawn.wait_time > 0.2:
+			$MouseSpawn.wait_time -= 0.05
+		if $DogSpawn.wait_time > 0.2:
+			$DogSpawn.wait_time -= 0.05
 
 func _physics_process(delta):
 	if player != null and $Camera2D.zoom.x >= 0.8:
