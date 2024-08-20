@@ -31,6 +31,7 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="Button2" parent="Menu" instance=ExtResource("2_fm84s")]
+visible = false
 layout_mode = 2
 
 [node name="Button3" parent="Menu" instance=ExtResource("2_fm84s")]

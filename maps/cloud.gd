@@ -7,5 +7,5 @@ func _ready():
 
 func _physics_process(delta):
 	position.x -= speed
-	if position.x <= -50:
+	if position.x <= -100:
 		queue_free()

@@ -68,6 +68,7 @@ texture_mode = 1
 script = ExtResource("1_jd1jx")
 
 [node name="Fing" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
 sprite_frames = SubResource("SpriteFrames_u6q8n")
 animation = &"close"
 frame = 4

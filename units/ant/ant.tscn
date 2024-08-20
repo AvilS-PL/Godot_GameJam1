@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ej6a38cy5hlp"]
+[gd_scene load_steps=8 format=3 uid="uid://ej6a38cy5hlp"]
 
 [ext_resource type="Script" path="res://units/ant/ant.gd" id="1_4fyrc"]
 [ext_resource type="Texture2D" uid="uid://dwp26rcrscrqr" path="res://units/ant/ant1.png" id="1_wfwgt"]
 [ext_resource type="Texture2D" uid="uid://c56ykhsip8ei2" path="res://units/ant/ant2.png" id="2_ak5jv"]
 [ext_resource type="Texture2D" uid="uid://bhh4iqq0fkf66" path="res://units/ant/ant3.png" id="3_8qfil"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_hl0a2"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_p6uoc"]
 radius = 1.0
@@ -27,6 +29,9 @@ animations = [{
 }]
 
 [node name="Ant" type="RigidBody2D"]
+mass = 0.1
+physics_material_override = SubResource("PhysicsMaterial_hl0a2")
+lock_rotation = true
 script = ExtResource("1_4fyrc")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
