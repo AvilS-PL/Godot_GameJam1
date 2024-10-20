@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="GameJam 1"
-run/main_scene="res://main_menu.tscn"
+run/main_scene="res://world.tscn"
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
@@ -57,4 +57,4 @@ space={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-renderer/rendering_method="mobile"
+renderer/rendering_method="gl_compatibility"

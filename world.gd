@@ -23,6 +23,7 @@ var tier = 0
 
 func _ready():
 	start_game()
+	$Tier.stop() #!!!
 
 func start_game():
 	
@@ -34,17 +35,18 @@ func start_game():
 	$Camera2D.position = map.get_node("Spawn").position
 	$Camera2D.zoom = Vector2(3.2,3.2)
 	
-	await get_tree().create_timer(1.0).timeout
-	spawn_ant_nest(45)
+	#await get_tree().create_timer(1.0).timeout #!!!
+	#spawn_ant_nest(45) #!!!
 	player = playerLoad.instantiate()
 	player.position = spawn
 	add_child(player)
 	
 	var arm = armLoad.instantiate()
 	arm.start = player.position + Vector2(0, 1)
-	arm.segments = 15
-	arm.segment_size = 0.15
-	arm.segment_length = 1
+	arm.segments = 20 #15!!!
+	arm.segment_size = 0.3 #0.15!!!
+	arm.segment_length = 3 #1 !!!
+	player.grow = 1.4#absent !!!
 	add_child(arm)
 
 func game_over():

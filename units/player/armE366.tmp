@@ -1,0 +1,107 @@
+[gd_scene load_steps=12 format=3 uid="uid://ntx581koqmfy"]
+
+[ext_resource type="Texture2D" uid="uid://cj41mivj4n5ro" path="res://units/player/fragment.png" id="1_g34nt"]
+[ext_resource type="Script" path="res://units/player/arm.gd" id="1_jd1jx"]
+[ext_resource type="Texture2D" uid="uid://bfosyubduxt5b" path="res://units/player/fing0.png" id="3_eruxl"]
+[ext_resource type="Texture2D" uid="uid://darkar7xgcxjo" path="res://units/player/fing1.png" id="4_6qq5i"]
+[ext_resource type="Texture2D" uid="uid://dk3tdu3k8pg5c" path="res://units/player/fing2.png" id="5_eak57"]
+[ext_resource type="Texture2D" uid="uid://7hfjkv53ppef" path="res://units/player/fing3.png" id="6_gnp11"]
+[ext_resource type="Texture2D" uid="uid://bmp63d1ysrdbh" path="res://units/player/fing4.png" id="7_nlvhe"]
+[ext_resource type="AudioStream" uid="uid://cwiqew7pxdea0" path="res://sound/g1.mp3" id="8_0q810"]
+
+[sub_resource type="Curve" id="Curve_8i3so"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.450549), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u6q8n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_eruxl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6qq5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_eak57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gnp11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_nlvhe")
+}],
+"loop": false,
+"name": &"close",
+"speed": 20.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_nlvhe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_gnp11")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_eak57")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_6qq5i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_eruxl")
+}],
+"loop": false,
+"name": &"open",
+"speed": 20.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hmpjw"]
+radius = 7.0
+height = 18.0
+
+[node name="Arm" type="Line2D"]
+z_index = 1
+texture_repeat = 2
+width = 14.0
+width_curve = SubResource("Curve_8i3so")
+texture = ExtResource("1_g34nt")
+texture_mode = 1
+script = ExtResource("1_jd1jx")
+
+[node name="Fing" type="AnimatedSprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_u6q8n")
+animation = &"open"
+
+[node name="Area2D" type="Area2D" parent="Fing"]
+collision_layer = 0
+collision_mask = 2
+gravity_point = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fing/Area2D"]
+position = Vector2(0, -1)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_hmpjw")
+
+[node name="SEat1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_0q810")
+volume_db = 1.0
+pitch_scale = 1.1
+
+[node name="SEat2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_0q810")
+volume_db = 1.0
+pitch_scale = 0.9
+
+[node name="SEat3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_0q810")
+volume_db = 1.0
+
+[node name="SEat4" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_0q810")
+volume_db = 1.0
+pitch_scale = 0.8
+
+[connection signal="area_entered" from="Fing/Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Fing/Area2D" to="." method="_on_area_2d_area_exited"]

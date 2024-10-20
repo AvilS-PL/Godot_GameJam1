@@ -49,14 +49,84 @@ func _physics_process(delta):
 		dest.y = start.y + segments*segment_length + 1
 	if dest.y < start.y - segments*segment_length - 1:
 		dest.y = start.y - segments*segment_length - 1
-	points[get_point_count() - 1] = dest
+	
+	#prevent collapse
+	#for i in get_point_count() - 2:
 	for i in get_point_count() - 2:
+		var p1 = points[get_point_count() - 1 - i] - points[get_point_count() - 2 - i]
+		var p_main = points[get_point_count() - 2 - i] - start
+		var p2 = points[get_point_count() - 3 - i] - points[get_point_count() - 2 - i]
+		
+		var ang1 = p1.angle()
+		#if ang1 < 0: ang1 += 2*PI
+		var ang2 = p2.angle()
+		#if ang2 < 0: ang2 += 2*PI
+		#if ang1 > ang2: print(ang1 - ang2)
+		#else: print(ang2 - ang1)
+			
+		var ang_main = abs(ang1-ang2)
+		var ang_main_reduced = ang_main
+		if ang_main_reduced > PI: ang_main_reduced = 2*PI - ang_main
+		var b_a = PI/2.2
+		#print(ang_main_reduced)
+		if ang1 < ang2:
+			if ang_main > PI:
+				if ang_main_reduced < PI/b_a:
+					var pos_main = Vector2(segment_length * cos(ang1-PI/b_a), segment_length * sin(ang1-PI/b_a))
+					#"l1"
+					pos_main += points[get_point_count() - 2 - i]
+					points[get_point_count() - 3 - i] = pos_main
+			else:
+				if ang_main_reduced < PI/2:
+					var pos_main = Vector2(segment_length * cos(ang1+PI/b_a), segment_length * sin(ang1+PI/b_a))
+					#"p1"
+					pos_main += points[get_point_count() - 2 - i]
+					points[get_point_count() - 3 - i] = pos_main
+		else:
+			if ang_main > PI:
+				if ang_main_reduced < PI/b_a:
+					var pos_main = Vector2(segment_length * cos(ang1+PI/b_a), segment_length * sin(ang1+PI/b_a))
+					#"p2"
+					pos_main += points[get_point_count() - 2 - i]
+					points[get_point_count() - 3 - i] = pos_main
+			else:
+				if ang_main_reduced < PI/b_a:
+					var pos_main = Vector2(segment_length * cos(ang1-PI/b_a), segment_length * sin(ang1-PI/b_a))
+					#"l1"
+					pos_main += points[get_point_count() - 2 - i]
+					points[get_point_count() - 3 - i] = pos_main
+		#if abs(ang1 - ang2) > PI:
+			#ang_main = 2*PI - abs(ang1 - ang2)
+			#print(ang_main, "l")
+			#if ang_main < PI/2:
+				#var pos_main = Vector2(segment_length * cos(ang1-PI/2), segment_length * sin(ang1-PI/2))
+				#print(ang_main, " | ", pos_main)
+				#points[get_point_count() - 3 - i] = pos_main
+		#elif (ang1 > 0 and ang2 <0) or (ang1 < 0 and ang2 > 0):
+			#print(ang_main)
+		#else:
+			#if ang1 > ang2:
+				#print(ang_main, "l")
+			#else:
+				#print(ang_main)
+	
+	#calculate postions for each
+	points[get_point_count() - 1] = dest
+	for i in get_point_count() - 1:
 		i = get_point_count() - i - 2
 		points[i] = limit_points(points[i], points[i+1])
 	
-	points[0] = start
-	for i in get_point_count() - 1:
-		points[i+1] = limit_points(points[i+1], points[i])
+	#for i in get_point_count() - 2:
+			#var p1 = get_point_count() - i - 1
+			#for j in get_point_count() - i - 3 :
+				#var p2 = p1 - j - 1
+				#if points[p1].distance_to(points[p2]) < segment_length:
+					#points[p2] = limit_points(points[p2], points[p1])
+	
+	#limit to start point
+	#points[0] = start
+	#for i in get_point_count() - 1:
+		#points[i+1] = limit_points(points[i+1], points[i])
 	
 	#for i in get_point_count() - 1:
 		#if points[i+1].y > 130:
