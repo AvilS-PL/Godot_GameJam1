@@ -4,7 +4,7 @@ var planet = Polygon2D.new()
 
 var progress = 1.0
 var score = 0
-
+#test
 var savePath = "user://highscore.save"
 
 #Loads
