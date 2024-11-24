@@ -42,7 +42,7 @@ func start_game():
 	
 	var arm = armLoad.instantiate()
 	arm.start = player.position + Vector2(0, 1)
-	arm.segments = 15
+	arm.segments = 16
 	arm.segment_size = 0.15
 	arm.segment_length = 1
 	add_child(arm)
