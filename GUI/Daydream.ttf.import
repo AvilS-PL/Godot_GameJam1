@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/Daydream.ttf-9d3b4d31622e340122155a53b3470254
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48

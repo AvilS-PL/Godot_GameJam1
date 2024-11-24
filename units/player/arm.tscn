@@ -61,7 +61,6 @@ radius = 7.0
 height = 18.0
 
 [node name="Arm" type="Line2D"]
-z_index = 1
 texture_repeat = 2
 width = 14.0
 width_curve = SubResource("Curve_8i3so")
